@@ -6,7 +6,22 @@ load_dotenv()
 textrazor.api_key = os.getenv("TEXT_RAZOR_API_KEY")
 
 client = textrazor.TextRazor(extractors=["entities", "topics"])
-response = client.analyze_url("http://www.bbc.co.uk/news/uk-politics-18640916")
 
-for entity in response.entities():
-    print(entity.id, entity.relevance_score, entity.confidence_score, entity.freebase_types)
+def get_entities(text:str):
+    try:
+        response = client.analyze(text=text)
+        return response
+    # TODO: when exception occurs issue occurs in process_output
+    except textrazor.TextRazorAnalysisException as ex:
+        return ex
+
+def process_output(response:textrazor.Entity or textrazor.TextRazorAnalysisException):
+    if type(response) == textrazor.TextRazorAnalysisException:
+        print("Failed to analyze with error:{exception}").format(exception=textrazor.TextRazorAnalysisException)
+        return
+    for entity in response.entities():
+        print(entity.id,entity.relevance_score, entity.dbpedia_types, entity.wikipedia_link)
+
+process_output(get_entities("Barack Obama"))
+# for entity in response.entities():
+#     print(entity.id, entity.relevance_score, entity.confidence_score, entity.freebase_types)
