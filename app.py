@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
-from inputText import InputText
+# from inputText import InputText
+from main import process_output, get_entities
 
 
 app = FastAPI(title="A conversation analysis API",
@@ -12,8 +13,9 @@ def index():
     return {'message':'Hello World!'}
 
 @app.post('/predict')
-def predict_sentiment(data:InputText):
-    pass
+def predict_sentiment(data:str):
+    ans = list(process_output(get_entities(data)))
+    return ans
 
 
 if __name__ == '__main__':

@@ -20,8 +20,10 @@ def process_output(response:textrazor.Entity or textrazor.TextRazorAnalysisExcep
         print("Failed to analyze with error:{exception}").format(exception=textrazor.TextRazorAnalysisException)
         return
     for entity in response.entities():
-        print(entity.id, entity.dbpedia_types, entity.wikipedia_link)
+        # print(entity.id, entity.dbpedia_types, entity.wikipedia_link)
+        yield entity.dbpedia_types
 
-process_output(get_entities("Facebook"))
+ans = list(process_output(get_entities("Facebook")))
+print(ans)
 # for entity in response.entities():
 #     print(entity.id, entity.relevance_score, entity.confidence_score, entity.freebase_types)
