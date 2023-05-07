@@ -20,11 +20,11 @@ This opens the browser with streamlit app running on your local system. If you w
 
 ## Sample Usage
 Let's take this text which is an excerpt from Tim Cook's Keynote speech from Global Privacy Summit:
-```
+
 Cook reflected on Apple's ongoing commitment to privacy, which the company has repeatedly described as a fundamental human right.
 
 "The fight to protect privacy is not an easy one, but it is one of the most essential battles of our time," said Cook. "We at Apple are proud to stand alongside all those who are working to advance privacy rights around the world. As a company, we are profoundly inspired by what technology can make possible, but we know too that technology is neither inherently good, nor inherently bad. It is what we make of it. It is a mirror that reflects the ambitions of the people who use it, the people who build it, and the people who regulate it."
-```
+
 Paste it onto the textbox:
 
 Click on "Extract🪄"
