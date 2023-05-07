@@ -62,12 +62,13 @@ st.title("CultureScout NLP Tool 🤖")
 st.write("***Enter Text You Need Help With:***")
 user_input = st.text_input("Text Here:", "")
 
-if st.button("🔎 Search It!"):
+if st.button("Extract🪄"):
     def predict_sentiment(data:str):
         ans = make_output(user_input)
         return ans
     df = predict_sentiment(user_input)
     df = df.drop_duplicates()
+    st.write("Context and Mentions")
     st.table(df)
     st.write("")
 
@@ -81,8 +82,9 @@ if st.button("🔎 Search It!"):
 
     p = px.pie(type_freq, values=type_freq.values, names=type_freq.index)
     # p.title('Object Frequencies')
-
+    st.write("Analysis on id")
     st.bar_chart(id_freq)
+    st.write("Analysis on type")
     st.plotly_chart(p)
 
     st.write(f"Most appeared id is {most_common_id}.")
