@@ -60,7 +60,7 @@ st.title("CultureScout NLP Tool 🤖")
 
 # taking user inputs for context search
 st.write("***Enter the conversation from which you would like to extract information:***")
-user_input = st.text_input("Text Here:", "")
+user_input = st.text_area("Text Here:", "")
 
 if st.button("Extract🪄"):
     def predict_sentiment(data:str):
