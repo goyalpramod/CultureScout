@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import replicate
 import plotly.express as px
+from textblob import TextBlob
 
 load_dotenv()
 REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
@@ -62,6 +63,11 @@ st.title("CultureScout NLP Tool 🤖")
 st.write("***Enter the conversation from which you would like to extract information:***")
 user_input = st.text_area("Text Here:", "")
 
+blob = TextBlob(user_input)
+
+# Sentiment polarity ranges from -1 to 1
+sentiment = blob.sentiment.polarity
+
 if st.button("Extract🪄"):
     def predict_sentiment(data:str):
         ans = make_output(user_input)
@@ -93,3 +99,10 @@ if st.button("Extract🪄"):
              """)
     st.write("*Summary of the input*")
     st.write(make_summary(user_input))
+    st.write("")
+    if sentiment > 0:
+        st.write("The overall sentiment of the given text is Positive 😁")
+    elif sentiment < 0:
+        st.write("The overall sentiment of the given text is Negative ☹️")
+    else:
+        st.write("The overall sentiment of the given text is Neutral 😐")
